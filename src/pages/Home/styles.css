@@ -43,8 +43,8 @@
 
 .products {
     background-color: white;
-    width: 80%;
-    height: 700px;
+    width: 60%;
+    height: 600px;
     overflow-y: scroll;
     border-radius: 1rem;
 }

@@ -7,6 +7,7 @@ export const ContextProvider = ({ children }) => {
     const API_URL = "http://localhost:9901";
     const [products, setProducts] = useState([]);
 
+    // Product services
     const getProducts = async () => {
         try {
             const res = await axios.get(`${API_URL}/products`);
@@ -18,7 +19,8 @@ export const ContextProvider = ({ children }) => {
 
     const getProduct = async (id) => {
         try {
-            await axios.get(`${API_URL}/products/${id}`);
+            const res = await axios.get(`${API_URL}/products/${id}`);
+            return res.data;
         } catch (error) {
             console.log(error);
         }

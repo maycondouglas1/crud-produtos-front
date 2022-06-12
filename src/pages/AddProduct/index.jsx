@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import { useFormik } from 'formik';
+import React, { useContext } from "react";
+import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import * as yup from 'yup';
-import Button from '../../components/Button';
+import * as yup from "yup";
+import Button from "../../components/Button";
 import "./styles.css";
-import { ProductContext } from '../../context/ProductContext';
+import { ProductContext } from "../../context/ProductContext";
 
 const AddProduct = () => {
     const { createProduct } = useContext(ProductContext);

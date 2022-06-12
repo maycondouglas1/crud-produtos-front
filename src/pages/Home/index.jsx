@@ -38,7 +38,11 @@ const Home = () => {
                                     <td>{product.stock}</td>
                                     <td>
                                         <button className="btn-trash"><TbTrash /> </button>
-                                        <button className="btn-edit" onClick={() => navigate(`edit/${product.id}`)}><TbEdit /> </button>
+                                        <button 
+                                            className="btn-edit" 
+                                            onClick={() => navigate(`edit/${product.id}`)}>
+                                                <TbEdit /> 
+                                        </button>
                                     </td>
                                 </tr>
                             ))}
