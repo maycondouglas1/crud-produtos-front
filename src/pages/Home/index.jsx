@@ -5,12 +5,16 @@ import { TbTrash, TbEdit } from "react-icons/tb";
 import { ProductContext } from "../../context/ProductContext";
 
 const Home = () => {
-    const { products, getProducts } = useContext(ProductContext);
+    const { products, getProducts, deleteProduct } = useContext(ProductContext);
     const navigate = useNavigate();
+
+    const removeProduct = async(id) => {
+        await deleteProduct(id);
+    }
 
     useEffect(() => {
         getProducts();
-    }, []);
+    }, [getProducts]);
 
     return (
         <div className="container">
@@ -30,14 +34,18 @@ const Home = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {products.map(product => (
-                                <tr>
+                            {products.sort((a,b) => a.id - b.id).map(product => (
+                                <tr key={product.id}>
                                     <td>{product.id}</td>
                                     <td>{product.name}</td>
-                                    <td>R$ {product.price}</td>
+                                    <td>R${product.price}</td>
                                     <td>{product.stock}</td>
                                     <td>
-                                        <button className="btn-trash"><TbTrash /> </button>
+                                        <button 
+                                            className="btn-trash" 
+                                            onClick={() => removeProduct(product.id)}>
+                                                <TbTrash />
+                                        </button>
                                         <button 
                                             className="btn-edit" 
                                             onClick={() => navigate(`edit/${product.id}`)}>

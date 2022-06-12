@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
+import { ProductContext } from "../../context/ProductContext";
 import Button from "../../components/Button";
 import "./styles.css";
-import { ProductContext } from "../../context/ProductContext";
 
 const AddProduct = () => {
     const { createProduct } = useContext(ProductContext);
@@ -46,6 +46,9 @@ const AddProduct = () => {
                     />
                     <label>Nome</label>
                 </div>
+                {(formik.touched.name && formik.errors.name) && (
+                    <span className="error">{formik.errors.name}</span>
+                )}
                 <div className="input-container">
                     <input
                         value={formik.values.price}
@@ -55,6 +58,9 @@ const AddProduct = () => {
                         name="price"
                         required
                     />
+                    {(formik.touched.price && formik.errors.price) && (
+                        <span className="error">{formik.errors.price}</span>
+                    )}
                     <label>Preço</label>
                 </div>
                 <div className="input-container">
@@ -66,6 +72,9 @@ const AddProduct = () => {
                         name="stock"
                         required
                     />
+                    {(formik.touched.stock && formik.errors.stock) && (
+                        <span className="error">{formik.errors.stock}</span>
+                    )}
                     <label>Estoque</label>
                 </div>
                 <Button onClick={formik.handleSubmit}>

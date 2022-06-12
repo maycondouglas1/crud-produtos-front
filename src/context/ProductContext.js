@@ -4,8 +4,11 @@ import React, { createContext, useState } from "react";
 export const ProductContext = createContext();
 
 export const ContextProvider = ({ children }) => {
+    // Local URL, type your URL here
     const API_URL = "http://localhost:9901";
+    
     const [products, setProducts] = useState([]);
+    const [product, setProduct] = useState("");
 
     // Product services
     const getProducts = async () => {
@@ -20,7 +23,7 @@ export const ContextProvider = ({ children }) => {
     const getProduct = async (id) => {
         try {
             const res = await axios.get(`${API_URL}/products/${id}`);
-            return res.data;
+            setProduct(res.data);
         } catch (error) {
             console.log(error);
         }
@@ -53,6 +56,7 @@ export const ContextProvider = ({ children }) => {
     return (
         <ProductContext.Provider value={{
             products,
+            product,
             getProducts,
             getProduct,
             createProduct,
